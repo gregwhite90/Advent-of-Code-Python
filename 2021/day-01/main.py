@@ -5,7 +5,7 @@ def line_to_num(line):
   return int(line[0])
 
 def sliding_window_increases(window_size):
-  with open('input.csv') as input_file:
+  with open('input/input.csv') as input_file:
     input_reader = csv.reader(input_file)
     cur_deque = collections.deque(maxlen=window_size + 1)
     num_increases = 0
@@ -17,6 +17,5 @@ def sliding_window_increases(window_size):
     return num_increases
 
 if __name__ == '__main__':
-  with open('input.csv') as input_file:
-    print(sliding_window_increases(1))
-    print(sliding_window_increases(3))
+  print(sliding_window_increases(1))
+  print(sliding_window_increases(3))

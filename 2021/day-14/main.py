@@ -81,7 +81,7 @@ def parse_input(filename: str) -> Polymerization:
   return polymerization
 
 if __name__ == '__main__':
-  polymerization = parse_input('input.txt')
+  polymerization = parse_input('input/input.txt')
   print(
     max_less_min(
       polymerization.counts_after_steps(steps = 40)

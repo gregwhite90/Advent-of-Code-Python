@@ -93,5 +93,5 @@ def parse_coord(coord_str: str) -> Coordinates:
   return Coordinates(*[int(coord_component) for coord_component in coord_str.split(',')])
 
 if __name__ == '__main__':
-  vent_field = parse_input('input.txt')
+  vent_field = parse_input('input/input.txt')
   print(vent_field.points_with_more_vents())

@@ -89,5 +89,5 @@ def parse_input(filename: str, folds: int = None) -> TransparentPaper:
   return paper
 
 if __name__ == '__main__':
-  paper = parse_input('input.txt')
+  paper = parse_input('input/input.txt')
   print(paper)

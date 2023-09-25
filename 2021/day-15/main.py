@@ -132,5 +132,5 @@ def parse_input(filename: str, times_expanded: int = 5) -> Riskmap:
   return riskmap
 
 if __name__ == '__main__':
-  riskmap = parse_input('input.txt')
+  riskmap = parse_input('input/input.txt')
   print(riskmap.lowest_risk())

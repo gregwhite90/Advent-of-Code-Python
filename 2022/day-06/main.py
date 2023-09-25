@@ -11,6 +11,6 @@ def parse_input(filename: str) -> str:
 
 if __name__ == '__main__':
   print(first_marker(
-    parse_input('input.txt'),
+    parse_input('input/input.txt'),
     unique_chars = 14,
   ))

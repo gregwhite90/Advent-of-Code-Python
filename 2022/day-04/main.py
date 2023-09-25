@@ -21,7 +21,7 @@ class Assignment:
 if __name__ == '__main__':
   containments = 0
   overlaps = 0
-  with open('input.txt') as f:
+  with open('input/input.txt') as f:
     for l in f:
       assignments = [
         Assignment(assignment_str)

@@ -51,5 +51,5 @@ def parse_input(filename: str, num_stacks: int = 9) -> Stacks:
   return stacks
 
 if __name__ == '__main__':
-  stacks = parse_input('input.txt')
+  stacks = parse_input('input/input.txt')
   print(stacks.tops())

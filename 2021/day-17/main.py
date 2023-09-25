@@ -92,5 +92,5 @@ def parse_input(filename: str) -> Probe:
   return probes[0]
 
 if __name__ == '__main__':
-  probe = parse_input('input.txt')
+  probe = parse_input('input/input.txt')
   print(probe.num_init_vels_in_tgt())

@@ -126,6 +126,6 @@ def parse_input(filename: str) -> Monkeys:
   return monkeys
 
 if __name__ == '__main__':
-  monkeys = parse_input('input.txt')
+  monkeys = parse_input('input/input.txt')
   monkeys.simulate_rounds()
   print(monkeys.monkey_business())

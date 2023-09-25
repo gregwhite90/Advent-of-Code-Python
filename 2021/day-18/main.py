@@ -150,5 +150,5 @@ def largest_magnitude(sns: List[SnailfishNumber]) -> int:
   return l_m
 
 if __name__ == '__main__':
-  sns = parse_input('input.txt')
+  sns = parse_input('input/input.txt')
   print(largest_magnitude(sns))

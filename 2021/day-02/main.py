@@ -1,7 +1,9 @@
 import csv
 
+INPUT_FILENAME = 'input/input.csv'
+
 def part_one():
-  with open('input.csv') as input_file:
+  with open(INPUT_FILENAME) as input_file:
     input_reader = csv.reader(input_file)
     x = 0
     depth = 0
@@ -15,7 +17,7 @@ def part_one():
     return x * depth
 
 def part_two():
-  with open('input.csv') as input_file:
+  with open(INPUT_FILENAME) as input_file:
     input_reader = csv.reader(input_file)
     x = 0
     depth = 0

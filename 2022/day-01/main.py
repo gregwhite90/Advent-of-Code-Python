@@ -34,6 +34,6 @@ def top_calories(elves: List[Elf], num: int = 3):
   return sum([elf.total_calories() for elf in elves[:num]])
 
 if __name__ == '__main__':
-  elves = parse_input('input.csv')
+  elves = parse_input('input/input.csv')
   print(max_calories(elves))
   print(top_calories(elves))

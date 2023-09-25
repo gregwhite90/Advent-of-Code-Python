@@ -17,7 +17,7 @@ CLOSING_TO_POINTS = {
 
 if __name__ == '__main__':
   incomplete_line_points = []
-  with open('input.txt') as f:
+  with open('input/input.txt') as f:
     for line in f:
       corrupted = False
       expected_closings = deque()
