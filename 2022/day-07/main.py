@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Dict, List
 import re
 
 CD_RE = re.compile(r"\$ cd (?P<arg>\S+)")
