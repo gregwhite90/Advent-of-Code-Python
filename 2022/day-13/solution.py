@@ -5,7 +5,7 @@ from enum import auto, Enum
 from typing import List, Union
 import itertools
 
-from utils import SolutionABC
+from shared import SolutionABC
 
 counter = itertools.count()
 

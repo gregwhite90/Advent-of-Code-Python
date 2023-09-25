@@ -1,7 +1,6 @@
-from utils import parse_input
-from solution import *
+from shared import print_solution
+from solution import Solution
 
 if __name__ == '__main__':
   soln = Solution()
-  parse_input(soln)
-  print(soln.solve())
+  print_solution(soln)

@@ -17,3 +17,9 @@ def parse_input(
   with open(filename) as f:
     for l in f:
       soln.parse_row(l.rstrip('\n'))
+
+def print_solution(
+    soln: SolutionABC,
+):
+  parse_input(soln)
+  print(soln.solve())
