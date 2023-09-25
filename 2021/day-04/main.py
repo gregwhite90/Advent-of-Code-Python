@@ -4,6 +4,8 @@ from typing import List, Dict
 # draw function removes from undrawn numbers, decrements each undrawn by row and column, and returns if the board is complete
 # add_line function takes a string line and interprets it
 
+INPUT_FILENAME = 'input/input.csv'
+
 class Coordinates:
   """
   Coordinates on a Bingo Board.
@@ -176,5 +178,5 @@ def score_of_last(infile: str) -> int:
   return setup.score_of_last()
     
 if __name__ == '__main__':
-  print(score_of_first('input.csv'))
-  print(score_of_last('input.csv'))
+  print(score_of_first(INPUT_FILENAME))
+  print(score_of_last(INPUT_FILENAME))

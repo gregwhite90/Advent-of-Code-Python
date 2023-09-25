@@ -68,5 +68,5 @@ def parse_input(filename: str) -> CaveSystem:
   return caves
 
 if __name__ == '__main__':
-  caves = parse_input('input.txt')
+  caves = parse_input('input/input.txt')
   print(caves.num_paths())

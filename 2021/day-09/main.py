@@ -86,6 +86,6 @@ def parse_input(filename: str) -> Heightmap:
   return heightmap
 
 if __name__ == '__main__':
-  heightmap = parse_input('input.txt')
+  heightmap = parse_input('input/input.txt')
   print(heightmap.risk_of_lowpoints())
   print(heightmap.top_n_basin_area_product())

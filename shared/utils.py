@@ -12,7 +12,7 @@ class SolutionABC(abc.ABC):
 
 def parse_input(
   soln: SolutionABC,
-  filename: str = 'input.txt',
+  filename: str = 'input/input.txt',
 ):
   with open(filename) as f:
     for l in f:

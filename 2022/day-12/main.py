@@ -119,5 +119,5 @@ def parse_input(filename: str) -> Heightmap:
   return heightmap
 
 if __name__ == '__main__':
-  heightmap = parse_input('input.txt')
+  heightmap = parse_input('input/input.txt')
   print(heightmap.shortest_path_len())

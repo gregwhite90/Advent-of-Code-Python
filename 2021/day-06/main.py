@@ -45,7 +45,7 @@ def parse_input(filename: str) -> List[LanternfishSchool]:
   return lanternfish_schools
 
 if __name__ == '__main__':
-  lanternfish_school = parse_input('input.csv')[0]
+  lanternfish_school = parse_input('input/input.csv')[0]
   lanternfish_school.progress_days(80)
   print(lanternfish_school.num_fish())
   lanternfish_school.progress_days(256-80)

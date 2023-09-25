@@ -81,7 +81,7 @@ def parse_input(filename: str) -> Grid:
   return grid
 
 if __name__ == '__main__':
-  grid = parse_input('input.txt')
+  grid = parse_input('input/input.txt')
   grid.n_steps(100)
   print(grid.total_flashes())
   print(grid.first_synced_flash())

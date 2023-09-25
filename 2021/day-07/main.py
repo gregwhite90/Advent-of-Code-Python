@@ -29,7 +29,7 @@ class Crabs:
       
 
 if __name__ == '__main__':
-  positions = parse_input('input.csv')[0]
+  positions = parse_input('input/input.csv')[0]
   median = round(statistics.median(positions), 0)
   fuels = [abs(position - median) for position in positions]
   print(sum(fuels))

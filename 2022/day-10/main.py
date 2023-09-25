@@ -62,6 +62,6 @@ def parse_input(filename: str) -> CPU:
   return cpu
 
 if __name__ == '__main__':
-  cpu = parse_input('input.txt')
+  cpu = parse_input('input/input.txt')
   print(cpu.sum_signals())
   print(cpu.draw())

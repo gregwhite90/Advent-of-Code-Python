@@ -138,7 +138,7 @@ def parse_input(filename: str) -> List[Packet]:
   return packets
 
 if __name__ == '__main__':
-  packets = parse_input('input.txt')
+  packets = parse_input('input/input.txt')
   assert len(packets) == 1
   print(packets[0].sum_versions_incl_children())
   print(packets[0].value())

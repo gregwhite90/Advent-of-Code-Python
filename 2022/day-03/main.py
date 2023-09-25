@@ -33,7 +33,7 @@ def parse_input(filename: str) -> List[Rucksack]:
   return rucksacks
 
 if __name__ == '__main__':
-  rucksacks = parse_input('example_input.txt')
+  rucksacks = parse_input('input/input.txt')
   print(sum(priority(rucksack.item_in_both_compartments()) for rucksack in rucksacks))
   p = 0
   for i in range(0, len(rucksacks), 3):

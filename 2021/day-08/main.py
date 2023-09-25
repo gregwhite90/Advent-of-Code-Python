@@ -89,6 +89,6 @@ def parse_input(filename: str) -> List[Entry]:
   return entries
 
 if __name__ == '__main__':
-  entries = parse_input('input.txt')
+  entries = parse_input('input/input.txt')
   print(sum(entry.output_values_of_length() for entry in entries))
   print(sum(entry.output_value_number() for entry in entries))

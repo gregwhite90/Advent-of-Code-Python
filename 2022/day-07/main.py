@@ -94,6 +94,6 @@ def parse_input(filename: str) -> fs:
   return fs
 
 if __name__ == '__main__':
-  fs = parse_input('input.txt')
+  fs = parse_input('input/input.txt')
   print(fs.sum_of_dirs_of_max_size())
   print(fs.size_of_smallest_sufficient())

@@ -85,5 +85,5 @@ def parse_input(filename: str, num_knots: int = 10) -> RopeGrid:
   return grid
 
 if __name__ == '__main__':
-  grid = parse_input('input.txt')
+  grid = parse_input('input/input.txt')
   print(grid.num_tail_visited())

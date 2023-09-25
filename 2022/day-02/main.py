@@ -73,5 +73,5 @@ def parse_input(filename: str) -> RPS:
   return rps
 
 if __name__ == '__main__':
-  rps = parse_input('input.txt')
+  rps = parse_input('input/input.txt')
   print(rps.points())

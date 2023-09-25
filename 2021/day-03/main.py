@@ -3,7 +3,7 @@ import math
 
 def read_to_list():
   nums = []
-  with open('input.csv') as input_file:
+  with open('input/input.csv') as input_file:
     input_reader = csv.reader(input_file)
     for line_num, line in enumerate(input_reader):
       nums += [line[0]]

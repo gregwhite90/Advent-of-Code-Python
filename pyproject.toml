@@ -1,0 +1,7 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "advent_of_code_python"
+version = "1.0.0"
