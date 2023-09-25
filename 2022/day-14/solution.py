@@ -1,4 +1,4 @@
-from typing import Union, NamedTuple
+from typing import Union, NamedTuple, Dict
 from enum import Enum, auto
 from shared import SolutionABC
 
