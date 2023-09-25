@@ -1,5 +1,5 @@
 from typing import List, Dict
-from enum import Enum
+from enum import Enum, auto
 
 class Opcode(Enum):
   ADD = 1
@@ -45,12 +45,23 @@ class OpcodeMode:
       else:
         self.parameter_modes.append(ParameterMode(0))
 
+class InputMode(Enum):
+  INPUT = auto()
+  CONNECTED = auto()
+
 class IntcodeComputer:
   def __init__(
     self,
     program: List[int],
+    inputs: List[int],
+    input_modes: List[InputMode],
   ):
     self.program = program
+    self.inputs = inputs
+    self.input_modes = input_modes
+    self.outputs: List[int] = []
+    self.instruction_pointer = 0
+    self.input_idx = 0
 
   def get_parameter(
     self,
@@ -63,67 +74,86 @@ class IntcodeComputer:
       assert parameter_mode == ParameterMode.POSITION
       return self.program[self.program[pointer]]
 
+  def is_halted(self) -> bool:
+    return OpcodeMode(self.program[self.instruction_pointer]).opcode == Opcode.HALT
+
   def assert_writing_position_mode(
     self,
     opcode_mode: OpcodeMode,
   ):
     assert opcode_mode.parameter_modes[-1] == ParameterMode.POSITION
 
+  def enqueue_input(
+    self,
+    input: int,
+  ):
+    self.inputs.append(input)
+    self.input_modes.append(InputMode.CONNECTED)
+
   def run(
     self,
   ):
-    instruction_pointer = 0
-    opcode_mode = OpcodeMode(self.program[instruction_pointer])
+    opcode_mode = OpcodeMode(self.program[self.instruction_pointer])
     while opcode_mode.opcode != Opcode.HALT:
       jumped = False
       if opcode_mode.opcode == Opcode.ADD:
         self.assert_writing_position_mode(opcode_mode)
-        self.program[self.program[instruction_pointer + 3]] = (
-          self.get_parameter(opcode_mode.parameter_modes[0], instruction_pointer + 1) + 
-          self.get_parameter(opcode_mode.parameter_modes[1], instruction_pointer + 2)
+        self.program[self.program[self.instruction_pointer + 3]] = (
+          self.get_parameter(opcode_mode.parameter_modes[0], self.instruction_pointer + 1) + 
+          self.get_parameter(opcode_mode.parameter_modes[1], self.instruction_pointer + 2)
         )
       elif opcode_mode.opcode == Opcode.MULTIPLY:
         self.assert_writing_position_mode(opcode_mode)
-        self.program[self.program[instruction_pointer + 3]] = (
-          self.get_parameter(opcode_mode.parameter_modes[0], instruction_pointer + 1) * 
-          self.get_parameter(opcode_mode.parameter_modes[1], instruction_pointer + 2)
+        self.program[self.program[self.instruction_pointer + 3]] = (
+          self.get_parameter(opcode_mode.parameter_modes[0], self.instruction_pointer + 1) * 
+          self.get_parameter(opcode_mode.parameter_modes[1], self.instruction_pointer + 2)
         )
       elif opcode_mode.opcode == Opcode.INPUT:
         self.assert_writing_position_mode(opcode_mode)
-        self.program[self.program[instruction_pointer + 1]] = int(input())
+        if self.input_idx >= len(self.inputs): break
+        if self.input_modes[self.input_idx] == InputMode.INPUT:
+          val = int(input())
+        else:
+          assert self.input_modes[self.input_idx] == InputMode.CONNECTED
+          val = self.inputs[self.input_idx]
+        self.input_idx += 1
+        self.program[self.program[self.instruction_pointer + 1]] = val
       elif opcode_mode.opcode == Opcode.OUTPUT:
-        print(self.get_parameter(opcode_mode.parameter_modes[0], instruction_pointer + 1))
+        self.outputs.append(self.get_parameter(opcode_mode.parameter_modes[0], self.instruction_pointer + 1))
       elif opcode_mode.opcode == Opcode.JUMP_IF_TRUE:
-        if self.get_parameter(opcode_mode.parameter_modes[0], instruction_pointer + 1) != 0:
-          instruction_pointer = self.get_parameter(
+        if self.get_parameter(opcode_mode.parameter_modes[0], self.instruction_pointer + 1) != 0:
+          self.instruction_pointer = self.get_parameter(
             opcode_mode.parameter_modes[1],
-            instruction_pointer + 2,
+            self.instruction_pointer + 2,
           )
           jumped = True
       elif opcode_mode.opcode == Opcode.JUMP_IF_FALSE:
-        if self.get_parameter(opcode_mode.parameter_modes[0], instruction_pointer + 1) == 0:
-          instruction_pointer = self.get_parameter(
+        if self.get_parameter(opcode_mode.parameter_modes[0], self.instruction_pointer + 1) == 0:
+          self.instruction_pointer = self.get_parameter(
             opcode_mode.parameter_modes[1],
-            instruction_pointer + 2,
+            self.instruction_pointer + 2,
           )
           jumped = True
       elif opcode_mode.opcode == Opcode.LESS_THAN:
         self.assert_writing_position_mode(opcode_mode)
         val = 1 if (
-          self.get_parameter(opcode_mode.parameter_modes[0], instruction_pointer + 1) <
-          self.get_parameter(opcode_mode.parameter_modes[1], instruction_pointer + 2)) else 0
-        self.program[self.program[instruction_pointer + 3]] = val
+          self.get_parameter(opcode_mode.parameter_modes[0], self.instruction_pointer + 1) <
+          self.get_parameter(opcode_mode.parameter_modes[1], self.instruction_pointer + 2)) else 0
+        self.program[self.program[self.instruction_pointer + 3]] = val
       else:
         assert opcode_mode.opcode == Opcode.EQUALS          
         self.assert_writing_position_mode(opcode_mode)
         val = 1 if (
-          self.get_parameter(opcode_mode.parameter_modes[0], instruction_pointer + 1) ==
-          self.get_parameter(opcode_mode.parameter_modes[1], instruction_pointer + 2)) else 0
-        self.program[self.program[instruction_pointer + 3]] = val
+          self.get_parameter(opcode_mode.parameter_modes[0], self.instruction_pointer + 1) ==
+          self.get_parameter(opcode_mode.parameter_modes[1], self.instruction_pointer + 2)) else 0
+        self.program[self.program[self.instruction_pointer + 3]] = val
 
       if not jumped:
-        instruction_pointer += PARAMETERS[opcode_mode.opcode] + 1
-      opcode_mode = OpcodeMode(self.program[instruction_pointer])
+        self.instruction_pointer += PARAMETERS[opcode_mode.opcode] + 1
+      opcode_mode = OpcodeMode(self.program[self.instruction_pointer])
 
   def position_0(self) -> int:
     return self.program[0]
+
+  def get_outputs(self) -> List[int]:
+    return self.outputs
