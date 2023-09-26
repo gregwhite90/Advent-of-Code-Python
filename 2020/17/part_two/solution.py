@@ -109,7 +109,7 @@ class Solution(SolutionABC):
       
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> int:
     for _ in range(6):
       self.cycle()
     return self.num_active()
