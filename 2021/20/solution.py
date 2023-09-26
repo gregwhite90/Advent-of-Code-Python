@@ -1,4 +1,4 @@
-from typing import Union, NamedTuple, Dict
+from typing import NamedTuple, Dict
 from enum import Enum
 
 from shared import SolutionABC
@@ -114,7 +114,7 @@ class Solution(SolutionABC):
 
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> int:
     self.image.update_starting_bounding_box()
     for _ in range(50):
       self.image.enhance(self.algorithm)
