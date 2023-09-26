@@ -1,6 +1,6 @@
 import itertools
 from enum import Enum
-from typing import Union, NamedTuple, Dict, Set
+from typing import NamedTuple, Dict, Set
 
 from shared import SolutionABC
 

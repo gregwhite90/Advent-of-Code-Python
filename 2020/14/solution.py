@@ -1,6 +1,6 @@
 import re
 import itertools
-from typing import Union, Dict, Tuple
+from typing import Dict, Tuple
 
 from shared import SolutionABC
 
