@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Union, Set
+from typing import Set
 
 from shared import SolutionABC
 
@@ -96,7 +96,7 @@ class Solution(SolutionABC):
 
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> int:
     for _ in range(MOVES):
       self._move()
     return self._labels_after_1()
