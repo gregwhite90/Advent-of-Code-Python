@@ -1,7 +1,7 @@
 """
 Used https://www.reddit.com/r/adventofcode/comments/kimluc/comment/ggse107/ to figure out the lookup list data structure approach.
 """
-from typing import Union, List, Set
+from typing import List, Set
 
 from shared import SolutionABC
 
@@ -62,6 +62,6 @@ class Solution(SolutionABC):
 
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> int:
     labels_iter = self._labels_after_1(10000000, 1000000)
     return next(labels_iter) * next(labels_iter)
