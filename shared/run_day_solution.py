@@ -41,7 +41,7 @@ def main():
       path_elements += [part_sub_module_name]
     else:
       if args.part == 'one':
-        print('Note: this day does not have a separate part one.')
+        print('Note: this day does not have a separate part one. Part two answer:')
   except ModuleNotFoundError:
     print(f'No solution found for {args.year} day {args.day}.')
   else:
