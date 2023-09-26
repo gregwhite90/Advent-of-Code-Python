@@ -1,5 +1,5 @@
 import re
-from typing import Union, List, Dict, NamedTuple, DefaultDict
+from typing import List, Dict, NamedTuple, DefaultDict
 from collections import defaultdict
 
 from shared import SolutionABC
@@ -66,7 +66,7 @@ class Solution(SolutionABC):
 
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> int:
     self._setup_game_status()
     while len(self.universes) > 0:
       self.move()
