@@ -17,5 +17,13 @@ class Solution(SolutionABC):
   def solve(
     self,
   ) -> Union[int, str]:
-    intcode_computer = IntcodeComputer(self.base_program)
-    intcode_computer.run()
+    for noun in range(100):
+      for verb in range(100):
+        intcode_computer = IntcodeComputer(
+          [self.base_program[0]] + [noun] + [verb] + self.base_program[3:],
+          [],
+          [],
+        )
+        intcode_computer.run()
+        if intcode_computer.position_0() == 19690720:
+          return 100 * noun + verb
