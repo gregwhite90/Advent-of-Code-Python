@@ -1,5 +1,5 @@
 import copy
-from typing import Union, List, Set, Tuple
+from typing import List, Set, Tuple
 
 from shared import SolutionABC
 
@@ -66,7 +66,7 @@ class Solution(SolutionABC):
 
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> int:
     game = RecursiveCombatGame(self._hands)
     game.winner()
     return game.winner_score()
