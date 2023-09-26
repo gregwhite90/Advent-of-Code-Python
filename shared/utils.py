@@ -1,5 +1,5 @@
 import abc
-from typing import Union, List
+from typing import Union, List, Tuple
 
 class SolutionABC(abc.ABC):
   @abc.abstractmethod
@@ -7,7 +7,7 @@ class SolutionABC(abc.ABC):
     pass
 
   @abc.abstractmethod
-  def solve(self) -> Union[int, str]:
+  def solve(self) -> Union[int, str, Tuple[int], Tuple[str]]:
     pass
 
 def parse_input(
