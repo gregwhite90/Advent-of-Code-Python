@@ -1,5 +1,5 @@
 import abc
-from typing import Union
+from typing import Union, List
 
 class SolutionABC(abc.ABC):
   @abc.abstractmethod
@@ -12,14 +12,17 @@ class SolutionABC(abc.ABC):
 
 def parse_input(
   soln: SolutionABC,
-  filename: str = 'input/input.txt',
+  path_elements: List[str],
+  filename: str = None,
 ):
+  filename = filename or f'{"/".join(path_elements)}/input/input.txt'
   with open(filename) as f:
     for l in f:
       soln.parse_row(l.rstrip('\n'))
 
 def print_solution(
     soln: SolutionABC,
+    path_elements: List[str],
 ):
-  parse_input(soln)
+  parse_input(soln, path_elements)
   print(soln.solve())
