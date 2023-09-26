@@ -30,7 +30,7 @@ class Solution(SolutionABC):
 
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> int:
     return self._prod_of_divider_packet_idxs()
 
   def _prod_of_divider_packet_idxs(
