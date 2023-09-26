@@ -44,13 +44,18 @@ def main():
         print('Note: this day does not have a separate part one.')
   except ModuleNotFoundError:
     print(f'No solution found for {args.year} day {args.day}.')
-    return
   else:
-    solution = importlib.import_module(
-      f'{".".join(path_elements)}.solution',
-    )
-    soln = solution.Solution()
-    print_solution(soln, path_elements)   
+    try:
+      solution = importlib.import_module(
+        f'{".".join(path_elements)}.solution',
+      )
+      soln = solution.Solution()
+    except ModuleNotFoundError:
+      print(f'No solution found for {args.year} day {args.day}.')
+    except AttributeError:
+      print(f'{args.year} day {args.day} solution is not compatible with shared main script.')
+    else:
+      print_solution(soln, path_elements)   
 
 if __name__ == '__main__':
   main()
