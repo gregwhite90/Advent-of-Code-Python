@@ -1,5 +1,5 @@
 import re
-from typing import Union, NamedTuple, Set
+from typing import NamedTuple, Set
 
 from shared import SolutionABC
 
@@ -84,7 +84,7 @@ class Solution(SolutionABC):
 
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> int:
     for _ in range(100):
       self.progress_day()
     return len(self.black_tiles)
