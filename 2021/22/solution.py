@@ -4,7 +4,7 @@ https://www.reddit.com/r/adventofcode/comments/rlxhmg/comment/hpizza8
 """
 import re
 import collections
-from typing import Union, NamedTuple, Counter
+from typing import NamedTuple, Counter
 
 from shared import SolutionABC
 
@@ -77,5 +77,5 @@ class Solution(SolutionABC):
 
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> int:
     return sum(volume(cuboid) * sign for cuboid, sign in self.cuboids.items())
