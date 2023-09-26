@@ -1,7 +1,7 @@
 import re
 import copy
 import collections
-from typing import Union, Dict, Set, Counter
+from typing import Dict, Set, Counter
 
 from shared import SolutionABC
 
@@ -47,6 +47,6 @@ class Solution(SolutionABC):
 
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> str:
     self.dedupe_allergen_to_ingredients()
     return self.dangerous_ingredients_list()
