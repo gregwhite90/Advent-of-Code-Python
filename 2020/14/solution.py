@@ -1,6 +1,6 @@
 import re
 import itertools
-from typing import Union, Dict
+from typing import Union, Dict, Tuple
 
 from shared import SolutionABC
 
@@ -11,8 +11,11 @@ class Solution(SolutionABC):
   def __init__(
     self,
   ):
+    self._part_one_mem: Dict[int, int] = {}
+    self._cur_and_mask = None
+    self._cur_or_mask = None
     self._mask: str = None
-    self._mem: Dict[int, int] = {}
+    self._part_two_mem: Dict[int, int] = {}
 
   def _apply_mask(self, addr: int) -> str:
     assert self._mask is not None
@@ -30,7 +33,7 @@ class Solution(SolutionABC):
       addr_bits_iter = iter(addr_bits)
       addr_str = re.sub('X', lambda _ : str(next(addr_bits_iter)), floating_addr)
       addr = int(addr_str, 2)
-      self._mem[addr] = val
+      self._part_two_mem[addr] = val
 
   def parse_row(
     self,
@@ -38,10 +41,20 @@ class Solution(SolutionABC):
   ):
     m = MASK_RE.match(row)
     if m is not None:
+      # part one
+      self._cur_and_mask = int(m['mask'].replace('X', '1'), 2)
+      self._cur_or_mask = int(m['mask'].replace('X', '0'), 2)
+      # part two
       self._mask = m['mask']
     else:
       m = MEM_RE.match(row)
       assert m
+      # part one
+      self._part_one_mem[m['addr']] = \
+        int(m['val']) & \
+        self._cur_and_mask | \
+        self._cur_or_mask
+      # part two
       addr = int(m['addr'])
       floating_addr = self._apply_mask(addr)
       val = int(m['val'])
@@ -49,5 +62,8 @@ class Solution(SolutionABC):
 
   def solve(
     self,
-  ) -> Union[int, str]:
-    return sum(val for val in self._mem.values())
+  ) -> Tuple[int]:
+    return (
+      sum(self._part_one_mem.values()),
+      sum(self._part_two_mem.values()),
+    )
