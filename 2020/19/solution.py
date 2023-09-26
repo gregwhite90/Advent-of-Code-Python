@@ -1,5 +1,5 @@
 import re
-from typing import Union, Dict, Set
+from typing import Dict, Set
 
 from shared import SolutionABC
 
@@ -109,5 +109,5 @@ class Solution(SolutionABC):
   
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> int:
     return self.rule_0_messages
