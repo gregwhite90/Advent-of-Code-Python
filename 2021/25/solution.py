@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Union, NamedTuple, Dict, Set
+from typing import NamedTuple, Dict, Set
 
 from shared import SolutionABC
 
@@ -58,7 +58,7 @@ class Solution(SolutionABC):
 
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> int:
     while True:
       if self.step() == 0:
         break
