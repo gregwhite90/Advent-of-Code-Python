@@ -1,8 +1,6 @@
 import re
-import math
 from collections import defaultdict, deque
-from typing import Union, List, Tuple, DefaultDict, FrozenSet, NamedTuple, Set, Dict
-from enum import Enum
+from typing import List, Tuple, DefaultDict, FrozenSet, NamedTuple, Set, Dict
 
 import numpy as np
 import numpy.typing as npt
@@ -224,7 +222,7 @@ class Solution(SolutionABC):
       
   def solve(
     self,
-  ) -> Union[int, str]:
+  ) -> Tuple[int]:
     """
     0. make scanner 0 be absolute.
     1. for any scanner with enough overlap with scanner 0, make that absolute.
@@ -240,5 +238,7 @@ class Solution(SolutionABC):
     for scanner in self.scanners:
       for absolute_beacon in scanner.absolute_beacons:
         all_absolute_beacons.add(absolute_beacon)
-    # part 1 is: return len(all_absolute_beacons)
-    return self.max_manhattan_distance()
+    return (
+      len(all_absolute_beacons),
+      self.max_manhattan_distance(),
+    )
